@@ -1,0 +1,4 @@
+nicegui
+pdfplumber
+PyPDF2
+uvicorn
