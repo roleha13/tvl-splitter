@@ -5,7 +5,7 @@ import zipfile  # For zipping output PDFs
 import asyncio  # For async processing
 from datetime import datetime
 import re
-from nicegui import ui, events, app  # Main NiceGUI import
+from nicegui import ui, events  # Main NiceGUI import
 import pdfplumber
 from PyPDF2 import PdfReader, PdfWriter
 
@@ -185,12 +185,11 @@ This tool extracts apartment statements from a combined PDF.
         dialog.open()
 
     ui.button('📘 Open User Guide', on_click=show_guide).style('background-color: #6c757d; color: white;')
-if __name__ in ("__main__", "__mp_main__"):
-    # This block is ONLY used if you run `python app.py` locally
-    ui.run(
-        title='TVL Statement PDF Generator',
-        dark=False,
-        reload=False,
-        show=True,  # show window when running locally; ignored on Render
-    )
+app = ui.run(
+    title='TVL Statement PDF Generator',
+    dark=False,
+    reload=False,
+    show=False,  # no browser window on the server
+    port=int(os.environ.get('PORT', 8080)),  # important for Render
+)
 
